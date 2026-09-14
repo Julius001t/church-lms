@@ -6,8 +6,30 @@ import type {
 
 import { useAuthStore } from "@/features/auth/store/useAuthStore";
 
+// ======================================================
+// API BASE URL
+// ======================================================
+//
+// Local development:
+//   http://127.0.0.1:8000/api/
+//
+// Production on Render:
+//   https://church-lms-backend.onrender.com/api/
+//
+// VITE_API_BASE_URL is supplied by Vite's environment
+// configuration. The localhost value is the development
+// fallback.
+//
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://127.0.0.1:8000/api/";
+
+// ======================================================
+// AXIOS INSTANCE
+// ======================================================
+
 const api = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/",
+  baseURL: API_BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },
@@ -84,7 +106,7 @@ api.interceptors.response.use(
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/auth/token/refresh/",
+        `${API_BASE_URL}auth/token/refresh/`,
         {
           refresh,
         },
