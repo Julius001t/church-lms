@@ -1,102 +1,112 @@
 import { ArrowRight, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import heroImage from "@/assets/hero.png";
+const HERO_VIDEO_URL = import.meta.env.VITE_HERO_VIDEO_URL;
 
 export default function HeroSection() {
   return (
-    <section className="bg-white">
-      <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:py-24">
-        {/* Text */}
-        <div>
-          <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-600">
-            <BookOpen size={16} />
+    <section className="relative min-h-[680px] overflow-hidden">
+      {/* Hero background video */}
+      <div className="absolute inset-0">
+        {HERO_VIDEO_URL ? (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="h-full w-full object-cover"
+            aria-hidden="true"
+            src={HERO_VIDEO_URL}
+          />
+        ) : (
+          <div className="h-full w-full bg-gradient-to-br from-blue-950 via-blue-900 to-blue-700" />
+        )}
+      </div>
 
+      {/* Dark readability overlay */}
+      <div className="absolute inset-0 bg-black/55" />
+
+      {/* Church LMS brand overlay */}
+      <div className="absolute inset-0 bg-blue-950/20" />
+
+      {/* Hero content */}
+      <div className="relative z-10 mx-auto flex min-h-[680px] max-w-7xl items-center px-6 py-20">
+        <div className="max-w-4xl text-white">
+
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white shadow-lg backdrop-blur-md">
+            <BookOpen size={16} />
             Learn. Grow. Live Your Faith.
           </div>
 
-          <h1 className="mt-6 max-w-2xl text-4xl font-extrabold leading-tight tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
-            Grow your faith through
-            <span className="text-blue-600">
-              {" "}
+          {/* Heading */}
+          <h1 className="mt-7 max-w-4xl text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+            Grow your faith through{" "}
+            <span className="text-blue-400">
               meaningful learning.
             </span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg leading-8 text-gray-600">
-            Discover Bible teachings, Christian courses,
-            spiritual growth resources, and practical lessons
-            designed to help you grow in your faith.
+          {/* Description */}
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-white/85 sm:text-xl">
+            Discover Bible teachings, Christian courses, spiritual growth
+            resources, and practical lessons designed to help you grow in
+            your faith.
           </p>
 
-          {/* Buttons */}
-          <div className="mt-8 flex flex-wrap gap-4">
+          {/* Actions */}
+          <div className="mt-9 flex flex-wrap gap-4">
             <Link
               to="/courses"
-              className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3.5 font-semibold text-white transition hover:bg-blue-700"
+              className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-7 py-4 font-semibold text-white shadow-lg transition duration-300 hover:bg-blue-700 hover:shadow-xl"
             >
               Explore Courses
-
               <ArrowRight size={18} />
             </Link>
 
             <Link
               to="/register"
-              className="rounded-lg border border-gray-300 bg-white px-6 py-3.5 font-semibold text-gray-800 transition hover:bg-gray-100"
+              className="rounded-lg border border-white/30 bg-white/10 px-7 py-4 font-semibold text-white shadow-lg backdrop-blur-md transition duration-300 hover:bg-white/20"
             >
               Get Started
             </Link>
           </div>
 
           {/* Stats */}
-          <div className="mt-8 flex flex-wrap gap-8 text-sm text-gray-600">
+          <div className="mt-12 flex flex-wrap gap-10 text-sm text-white/80">
             <div>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-2xl font-bold text-white">
                 100%
               </p>
-
-              <p>Faith-focused</p>
+              <p className="mt-1">
+                Faith-focused
+              </p>
             </div>
 
             <div>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-2xl font-bold text-white">
                 Online
               </p>
-
-              <p>Learn anywhere</p>
+              <p className="mt-1">
+                Learn anywhere
+              </p>
             </div>
 
             <div>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-2xl font-bold text-white">
                 Anytime
               </p>
-
-              <p>Learn at your pace</p>
+              <p className="mt-1">
+                Learn at your pace
+              </p>
             </div>
-          </div>
-        </div>
-
-        {/* Image */}
-        <div className="relative">
-          <div className="overflow-hidden rounded-2xl shadow-2xl">
-            <img
-              src={heroImage}
-              alt="Students learning"
-              className="h-[420px] w-full object-cover sm:h-[500px]"
-            />
-          </div>
-
-          <div className="absolute -bottom-5 -left-5 hidden rounded-xl border bg-white p-5 shadow-xl sm:block">
-            <p className="text-sm text-gray-500">
-              Start learning today
-            </p>
-
-            <p className="mt-1 font-bold text-gray-900">
-              Build your faith
-            </p>
           </div>
         </div>
       </div>
+
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/30 to-transparent" />
     </section>
   );
 }
