@@ -1,27 +1,37 @@
 import { ArrowRight, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const HERO_VIDEO_URL = import.meta.env.VITE_HERO_VIDEO_URL;
+import heroImage from "../../../assets/hero.png";
+import heroVideo from "../../../assets/church_Lms-video.mp4";
 
 export default function HeroSection() {
   return (
     <section className="relative min-h-[680px] overflow-hidden">
-      {/* Hero background video */}
+
+      {/* Hero background */}
       <div className="absolute inset-0">
-        {HERO_VIDEO_URL ? (
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
+
+        {/* MP4 video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={heroImage}
+          className="h-full w-full object-cover"
+          aria-hidden="true"
+        >
+          <source src={heroVideo} type="video/mp4" />
+
+          {/* PNG fallback if browser cannot play the video */}
+          <img
+            src={heroImage}
+            alt=""
             className="h-full w-full object-cover"
             aria-hidden="true"
-            src={HERO_VIDEO_URL}
           />
-        ) : (
-          <div className="h-full w-full bg-gradient-to-br from-blue-950 via-blue-900 to-blue-700" />
-        )}
+        </video>
+
       </div>
 
       {/* Dark readability overlay */}
@@ -102,11 +112,13 @@ export default function HeroSection() {
               </p>
             </div>
           </div>
+
         </div>
       </div>
 
       {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/30 to-transparent" />
+
     </section>
   );
 }
