@@ -1,7 +1,7 @@
 import { ArrowRight, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "../../../assets/hero.png";
-import heroVideo from "../../../assets/church_Lms-video.mp4";
+import heroVideo from "../../../assets/church_lms-video.mp4";
 
 export default function HeroSection() {
   return (
@@ -23,7 +23,7 @@ export default function HeroSection() {
         >
           <source src={heroVideo} type="video/mp4" />
 
-          {/* PNG fallback if browser cannot play the video */}
+          {/* Fallback for browsers that cannot play MP4 */}
           <img
             src={heroImage}
             alt=""
@@ -86,30 +86,18 @@ export default function HeroSection() {
           {/* Stats */}
           <div className="mt-12 flex flex-wrap gap-10 text-sm text-white/80">
             <div>
-              <p className="text-2xl font-bold text-white">
-                100%
-              </p>
-              <p className="mt-1">
-                Faith-focused
-              </p>
+              <p className="text-2xl font-bold text-white">100%</p>
+              <p className="mt-1">Faith-focused</p>
             </div>
 
             <div>
-              <p className="text-2xl font-bold text-white">
-                Online
-              </p>
-              <p className="mt-1">
-                Learn anywhere
-              </p>
+              <p className="text-2xl font-bold text-white">Online</p>
+              <p className="mt-1">Learn anywhere</p>
             </div>
 
             <div>
-              <p className="text-2xl font-bold text-white">
-                Anytime
-              </p>
-              <p className="mt-1">
-                Learn at your pace
-              </p>
+              <p className="text-2xl font-bold text-white">Anytime</p>
+              <p className="mt-1">Learn at your pace</p>
             </div>
           </div>
 
